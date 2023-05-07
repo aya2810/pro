@@ -8,11 +8,14 @@ mongoose.set('strictQuery', true);
 
 mongoose.connect(process.env.mongoConnectionUrl);
 
+import subjectsRouter from './routes/subjects.js';
 const app = express();
 
 app.engine('handlebars' , engine());
-app.set("view engine", 'handlebars');
-app.set('view', './templets')
+app.set('view engine', 'handlebars');
+app.set('views', './templets')
+
+app.use('/subjects', subjectsRouter);
 
 
 app.listen(process.env.PORT, () => {
